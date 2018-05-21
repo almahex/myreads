@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import ReadStateRow from './ReadStateRow'
 
 class BookShelf extends Component {
@@ -41,19 +41,53 @@ class BookShelf extends Component {
       }] 
     }
 
-  addBookToReading = (book) => {
-    this.setState((state) => ({ 
-      reading: state.reading.splice(state.reading.indexOf(book), 1),
-      alreadyRead: state.alreadyRead.push(book)
-    }))
+  findBook = (book) => {
+    if (this.state.reading.filter((b) => b !== book).length < this.state.reading.length) return 'reading';
+    if (this.state.wantToRead.filter((b) => b !== book).length < this.state.wantToRead.length) return 'wantToRead';
+    else return 'alreadyRead';   
+  }
+
+  addBookToReading = (book, nextState) => {
+    let prevState = this.findBook(book)
+    if (nextState === 'none') {
+      this.setState((state) => ({
+        prevState: state[prevState].splice(state[prevState].indexOf(book), 1),
+      }))
+    } else {
+      this.setState((state) => ({
+        prevState: state[prevState].splice(state[prevState].indexOf(book), 1),
+        nextState: state[nextState].push(book)
+      }))
+    }
+  }
+
+  componentWillMount() {
+    localStorage.getItem('reading') && this.setState({
+      reading: JSON.parse(localStorage.getItem('reading')),
+      isLoading: false
+    })
+    localStorage.getItem('wantToRead') && this.setState({
+      wantToRead: JSON.parse(localStorage.getItem('wantToRead')),
+      isLoading: false
+    }) 
+    localStorage.getItem('alreadyRead') && this.setState({
+      alreadyRead: JSON.parse(localStorage.getItem('alreadyRead')),
+      isLoading: false
+    })
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('reading', JSON.stringify(nextState.reading));
+    localStorage.setItem('wantToRead', JSON.stringify(nextState.wantToRead));
+    localStorage.setItem('alreadyRead', JSON.stringify(nextState.alreadyRead));
   } 
 
   render() {
     return (
       <div className="Book-shelf">
         <ReadStateRow readState="Reading" books={this.state.reading} addBook={this.addBookToReading}/>
-        <ReadStateRow readState="Want to read" books={this.state.wantToRead}/>
-        <ReadStateRow readState="Already read" books={this.state.alreadyRead}/>
+        <ReadStateRow readState="Want to read" books={this.state.wantToRead} addBook={this.addBookToReading}/>
+        <ReadStateRow readState="Already read" books={this.state.alreadyRead} addBook={this.addBookToReading}/>
         <Link className="Search-book" to="/search"><span role="img" aria-label="See options">&#128269;</span></Link>
       </div>
     );
