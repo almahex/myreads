@@ -6,15 +6,15 @@ class ReadStateRow extends Component {
   static propTypes = {
     readState: PropTypes.string.isRequired,
     books: PropTypes.array.isRequired,
-    addBook: PropTypes.func.isRequired
   }
+
   render() {
     return (
       <div className="Read-state-row">
     	<h2 className="Read-state-row-title">{this.props.readState}</h2>
     	<ul className="Books-list">
         {this.props.books.map((book) => (
-          <li key={book.title}>
+          <li key={book.id}>
             <Book book={book} addBook={this.props.addBook}/>
           </li>
         ))}

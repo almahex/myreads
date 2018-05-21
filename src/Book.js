@@ -8,9 +8,10 @@ class Book extends Component {
   }
 
   render() {
+    const imageThumb = this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : null;
     return (
       <div className="Book">
-    	  <img className="Book-image" src={this.props.book.image} alt="Title of the book"/>
+    	  <img className="Book-image" src={imageThumb} alt="Title of the book"/>
         <div className="Book-options">
           <select onClick={(e) => this.props.addBook(this.props.book, e.target.value)}>
             <option value="none" disabled>Move to...</option>
@@ -21,7 +22,7 @@ class Book extends Component {
           </select>
         </div>
         <p className="Book-title">{this.props.book.title}</p>
-        <p className="Book-author">{this.props.book.author}</p>
+        <p className="Book-author">{this.props.book.authors}</p>
       </div>
     );
   }
