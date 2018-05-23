@@ -6,6 +6,7 @@ import SearchBooks from './SearchBooks';
 
 class App extends Component {
 
+  //All the books classified in reading, want to read or already read
   state = {
       reading: [{
         id: "01",
@@ -65,6 +66,7 @@ class App extends Component {
       }] 
     }
 
+  //returns the current state (currently reading, want to read, already read or none) of a book
   findBook = (book) => {
     if (this.state.reading.filter((b) => b !== book).length < this.state.reading.length) return 'reading';
     if (this.state.wantToRead.filter((b) => b !== book).length < this.state.wantToRead.length) return 'wantToRead';
@@ -72,7 +74,9 @@ class App extends Component {
     else return 'none';   
   }
 
-  addBookToReading = (book, nextState) => {
+  //Given a book and a new state of reading (currently reading, want to read, already read or none) this function
+  //puts the book in that new state and removes it from the prior one (if there was any)
+  addBook = (book, nextState) => {
     let prevState = this.findBook(book)
     if (nextState === 'none') {
       this.setState((state) => ({
@@ -90,6 +94,8 @@ class App extends Component {
     }
   }
 
+  //Before mounting the component we get all the information from localStorage in order to make the
+  //user's information persist
   componentWillMount() {
     localStorage.getItem('reading') && this.setState({
       reading: JSON.parse(localStorage.getItem('reading')),
@@ -105,12 +111,15 @@ class App extends Component {
     })
   }
 
+  //Everytime there's an update we update the localStorage as well
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('reading', JSON.stringify(nextState.reading));
     localStorage.setItem('wantToRead', JSON.stringify(nextState.wantToRead));
     localStorage.setItem('alreadyRead', JSON.stringify(nextState.alreadyRead));
   }
 
+  //Renders the main page which is composed by: header, a bookshelf if we are home ("/") or
+  //the search bar if we are in "/search" and a footer
   render() {
     return (
       <div className="App">
@@ -118,11 +127,11 @@ class App extends Component {
           <h1 className="App-title">MyReads</h1>
         </header>
         <Route exact path="/" render={() => (
-          <BookShelf books={this.state} addBook={this.addBookToReading}/>
+          <BookShelf books={this.state} addBook={this.addBook}/>
           )}
         />
         <Route path="/search" render={() => (
-          <SearchBooks addBook={this.addBookToReading}/>
+          <SearchBooks addBook={this.addBook}/>
           )}
         />
         <footer className="App-footer">

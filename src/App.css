@@ -50,7 +50,6 @@ p {
   padding: 0;
 }
 
-
 .Read-state-row:last-of-type {
   border: none;
 }
@@ -76,7 +75,7 @@ p {
   text-decoration: none;
   text-align: center;
   padding-top: 5px;
-  color: black;
+  color: white;
 }
 
 /* Book */
@@ -105,7 +104,7 @@ p {
   margin-top: -30px;
   border-radius: 50%;
   background: #fd9f15;
-  background-image: url('./icons/arrow-drop-down.svg');
+  background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -147,7 +146,7 @@ p {
   width: 10%;
   text-decoration: none;
   color: black;
-  font-size: 18pt;
+  font-size: 12pt;
 }
 
 .Search-bar input {

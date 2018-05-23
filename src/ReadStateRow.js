@@ -8,6 +8,7 @@ class ReadStateRow extends Component {
     books: PropTypes.array.isRequired,
   }
 
+  //Renders the name of the state of reading and the books that belong to that state
   render() {
     return (
       <div className="Read-state-row">
