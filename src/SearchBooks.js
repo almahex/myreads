@@ -6,7 +6,8 @@ import ReadStateRow from './ReadStateRow'
 
 class SearchBooks extends Component {
   static propTypes = {
-    addBook: PropTypes.func.isRequired
+    changeShelf: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired
   }
 
   //The state of this component has the user's query when searching and the books found as a result
@@ -15,20 +16,33 @@ class SearchBooks extends Component {
     result: []
   }
 
+  setShelf(result) {
+    result.forEach(e => {
+      if (this.props.books.indexOf(e) === -1) {
+        e.shelf = "none"
+      } else {
+        e.shelf = this.props.books.indexOf(e).shelf
+      }
+    })
+    return result
+  }
+
   //Gets the user's query and calls the BooksAPI in order to handle the response
   updateQuery = (query) => {
     this.setState({ query: query })
-    if (query) {
-      BooksAPI.search(query)
+    if (query.trim()) {
+      BooksAPI.search(query.trim())
       .then(result => {
         if (result instanceof Array && result.length > 0) {
-          this.setState({result})       
+          const validatedResult = this.setShelf(result)
+          console.log(validatedResult)
+          this.setState({result: validatedResult})       
         } else {
           this.setState({result: []})
         }
       })
       .catch((error) => {
-        console.log("Found error: " + error)
+        console.log(error)
         this.setState({result: []}) 
       })
     } else {
@@ -48,7 +62,7 @@ class SearchBooks extends Component {
               onChange={(event) => this.updateQuery(event.target.value)}/>
         </div>
         <div className="Show-search">
-          <ReadStateRow readState="" books={this.state.result} addBook={this.props.addBook}/>
+          <ReadStateRow readState="" readStateValue="" books={this.state.result} changeShelf={this.props.changeShelf}/>
         </div>
       </div>
     );

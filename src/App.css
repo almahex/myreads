@@ -55,10 +55,10 @@ p {
 }
 
 .Read-state-row-title {
-  font-size: 16pt;
+  font-size: 14pt;
   font-weight: 400;
   color: black;
-  width: 160px;
+  width: 210px;
 }
 
 .Search-book {
@@ -116,6 +116,16 @@ p {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+.Book-options select option {
+  background-color: #222;
+  color: #eee;
+}
+
+.Book-options select option.selected {
+  background-color: #eee;
+  color: #222;
 }
 
 .Book-title {
