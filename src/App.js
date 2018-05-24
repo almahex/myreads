@@ -7,11 +7,12 @@ import SearchBooks from './SearchBooks'
 
 class App extends Component {
 
-  //All the books classified in reading, want to read or already read
+  //All the user's books
   state = {
     books: [] 
   }
 
+  //Given a book an desired shelf changes the shelf of the corresponding book using the API
   changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
     .then(() => {
@@ -25,6 +26,7 @@ class App extends Component {
     })   
   }
 
+  //Gets from the API all the user's books and puts them into the state
   componentDidMount() {
     BooksAPI.getAll()
     .then((books) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import ReadStateRow from './ReadStateRow'
 
-
+//Renders every shelf given the name of the shelf
 function BookShelf (props) {
   return (
       <div className="Book-shelf">

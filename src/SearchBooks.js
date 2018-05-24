@@ -16,27 +16,28 @@ class SearchBooks extends Component {
     result: []
   }
 
-  setShelf(result) {
-    result.forEach(e => {
-      if (this.props.books.indexOf(e) === -1) {
-        e.shelf = "none"
-      } else {
-        e.shelf = this.props.books.indexOf(e).shelf
-      }
-    })
-    return result
+  //Sets the corresponding value of shelf for every book
+  setShelf = book => {
+    const match = this.props.books.filter(b => b.id === book.id)
+    if (match.length > 0) {
+      book.shelf = match[0].shelf
+    } else {
+      book.shelf = "none"
+    }
+    return book
   }
 
   //Gets the user's query and calls the BooksAPI in order to handle the response
   updateQuery = (query) => {
     this.setState({ query: query })
-    if (query.trim()) {
-      BooksAPI.search(query.trim())
+    if (query) {
+      BooksAPI.search(query)
       .then(result => {
         if (result instanceof Array && result.length > 0) {
-          const validatedResult = this.setShelf(result)
-          console.log(validatedResult)
-          this.setState({result: validatedResult})       
+          this.setState({result})
+          const newBooks = this.state.result.map(this.setShelf)
+          console.log(newBooks)
+          this.setState({result: newBooks})
         } else {
           this.setState({result: []})
         }
