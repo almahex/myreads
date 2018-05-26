@@ -59,7 +59,7 @@ class App extends Component {
           <Route component={NoMatch}/>
         </Switch>
         <footer className="App-footer">
-          <p>Copyright 2018 by Sara Garci. All rights reserved.</p>
+          <p>© Copyright 2018 by Sara Garci. All rights reserved.</p>
         </footer>
       </div>
     );
