@@ -48,11 +48,11 @@ class App extends Component {
           <h1 className="App-title">MyReads</h1>
         </header>
         <Switch>
-          <Route exact path="/" render={() => (
+          <Route exact path="myreads/" render={() => (
             <BookShelf books={this.state.books} changeShelf={this.changeShelf}/>
             )}
           />
-          <Route path="/search" render={() => (
+          <Route path="myreads/search" render={() => (
             <SearchBooks books={this.state.books} changeShelf={this.changeShelf}/>
             )}
           />
