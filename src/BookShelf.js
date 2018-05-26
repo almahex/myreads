@@ -6,10 +6,10 @@ import ReadStateRow from './ReadStateRow'
 function BookShelf (props) {
   return (
       <div className="Book-shelf">
+        <Link className="Search-book" to="/search"></Link>
         <ReadStateRow readState="Currently Reading" readStateValue="currentlyReading" books={props.books} changeShelf={props.changeShelf}/>
         <ReadStateRow readState="Want to read" readStateValue="wantToRead" books={props.books} changeShelf={props.changeShelf}/>
         <ReadStateRow readState="Read" readStateValue="read" books={props.books} changeShelf={props.changeShelf}/>
-        <Link className="Search-book" to="/search"><span role="img" aria-label="See options">&#128269;</span></Link>
       </div>
   )
 }

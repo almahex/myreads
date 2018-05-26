@@ -19,7 +19,7 @@ p {
 
 .App-header {
   width: 70%;
-  margin: 5em 0 4em;
+  margin: 5em 0 0;
   padding: 2em;
   color: black;
   border-bottom: 5px solid #fd9f15;
@@ -62,20 +62,18 @@ p {
 }
 
 .Search-book {
+  margin: 10px 0 2em auto;
+  background-image: url('./icons/glass.svg');
+  background-repeat: no-repeat;
   width: 40px;
   height: 40px;
-  align-self: flex-end;
-  position: fixed;
-  background-color: #fd9f15;
   border: 0;
-  color: black;
   font-size: 18pt;
   cursor: pointer;
   outline: none;
   text-decoration: none;
   text-align: center;
   padding-top: 5px;
-  color: white;
 }
 
 /* Book */
@@ -119,8 +117,10 @@ p {
 }
 
 .Book-options select option {
-  background-color: #222;
-  color: #eee;
+  background-color: #e4e4e4;
+  color: #000;
+  font-size: 12pt;
+  padding: 1em;
 }
 
 .Book-options select option.selected {
@@ -144,6 +144,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 70%;
+  margin-top: 4em;
 }
 
 .Search-bar {
@@ -154,6 +155,8 @@ p {
 
 .Search-bar a {
   width: 10%;
+  background-image: url('./icons/arrow-back.svg');
+  background-repeat: no-repeat;
   text-decoration: none;
   color: black;
   font-size: 12pt;
@@ -161,8 +164,9 @@ p {
 
 .Search-bar input {
   width: 85%;
+  background-color: #e4e4e4;
   border: none;
-  border-bottom: 1px solid #ddd;
+  padding: 4px 4px 4px 10px;
   font-size: 14pt;
 }
 
@@ -174,6 +178,11 @@ p {
   justify-content: center;
 }
 
+/* No Page Match */
+
+.No-match {
+  margin-top: 4em;
+}
 
 /* Footer */
 
@@ -183,7 +192,7 @@ p {
   padding: 2em;
   border-top: 1px solid #ddd;
   text-align: center;
-  font-size: 14pt;
+  font-size: 12pt;
 }
 
 /* Responsive */
