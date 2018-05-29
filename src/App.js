@@ -47,14 +47,17 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">MyReads</h1>
         </header>
-        <Route exact path="/" render={() => (
-          <BookShelf books={this.state.books} changeShelf={this.changeShelf}/>
-          )}
-        />
-        <Route path="/search" render={() => (
-          <SearchBooks books={this.state.books} changeShelf={this.changeShelf}/>
-          )}
-        />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <BookShelf books={this.state.books} changeShelf={this.changeShelf}/>
+            )}
+          />
+          <Route path="/search" render={() => (
+            <SearchBooks books={this.state.books} changeShelf={this.changeShelf}/>
+            )}
+          />
+          <Route component={NoMatch}/>
+        </Switch>
         <footer className="App-footer">
           <p>© Copyright 2018 by Sara Garci. All rights reserved.</p>
         </footer>
