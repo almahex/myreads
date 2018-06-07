@@ -194,15 +194,15 @@ p {
   font-size: 12pt;
 }
 
-.view-source {
-  width: 40%;
+.View-source {
+  width: 60%;
   align-self: center;
   color: #4183c4;
   font-weight: 300;
   text-decoration: none;
   border-top: 1px solid #ddd;
   margin: 1.3em 0 0;
-  padding: 1em 0 0;
+  padding: 1em 0;
 }
 
 

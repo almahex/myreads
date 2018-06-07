@@ -59,7 +59,7 @@ class App extends Component {
           <Route component={NoMatch}/>
         </Switch>
         <footer className="App-footer">
-          <a class="view-source" href="https://github.com/almahex/myreads" title="View source for this page on GitHub">View source on GitHub</a>
+          <a className="View-source" href="https://github.com/almahex/myreads" title="View source for this page on GitHub">View source on GitHub</a>
           <p>© Copyright 2018 by Sara Garci. All rights reserved.</p>
         </footer>
       </div>
